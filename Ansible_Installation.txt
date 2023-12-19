@@ -1,0 +1,40 @@
+###########################Installation of Ansible on Windows Operating System##########################
+
+Prerequisites:
+
+1) Windows OS version should 10 or 11
+
+2) Install WSL software using powershell
+
+3) Install Ubuntu 22 LTS version from microsoft store
+
+
+Anisble Installation steps:
+
+
+1) sudo apt-get update
+
+2) sudo apt-get install python3-pip git libffi-dev libssl-dev -y
+
+3) sudo pip install --user ansible pywinrm
+
+
+To run Ansible from source instead of a release on the WSL, simply uninstall the pip installed version and then clone the git repo.
+
+1) pip uninstall ansible -y
+
+2) git clone https://github.com/ansible/ansible.git
+
+3) source ansible/hacking/env-setup
+
+
+
+# To enable Ansible on login, run the following
+echo ". ~/ansible/hacking/env-setup -q' >> ~/.bashrc
+If you encounter timeout errors when running Ansible on the WSL, this may be due to an issue with sleep not returning correctly. The following workaround may resolve the issue:
+
+1) mv /usr/bin/sleep /usr/bin/sleep.orig
+
+2) ln -s /bin/true /usr/bin/sleep
+
+
